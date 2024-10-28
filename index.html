@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Site</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* styles.css */
+    .offline-message {
+      font-size: 1.5em;
+      color: red;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .content {
+      display: block;
+      /* Default to display the content */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <!-- Header Content -->
+     <a href="">Home</a>
+     <a href="">About</a>
+     <a href="">Features</a>
+  </header>
+  <aside>
+    <!-- Sidebar Content -->
+  </aside>
+  <main id="main-content">
+    <!-- Main Content to be replaced when offline -->
+
+    <div class="box-1" style="background-color: red; width: 500px; height: 500px;"></div>
+    <div class="content">
+      <!-- Your regular main content here -->
+    </div>
+    <div class="offline-message" style="display: none;">
+      No internet connection. Please check your connection and try again.
+    </div>
+  </main>
+  <script src="script.js"></script>
+
+  <script>
+    // script.js
+    function updateOnlineStatus() {
+      const mainContent = document.querySelector('#main-content .content');
+      const offlineMessage = document.querySelector('#main-content .offline-message');
+
+      if (navigator.onLine) {
+        mainContent.style.display = 'block';
+        offlineMessage.style.display = 'none';
+      } else {
+        mainContent.style.display = 'none';
+        offlineMessage.style.display = 'block';
+      }
+    }
+
+    // Event listeners for online/offline detection
+    window.addEventListener('load', updateOnlineStatus);
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+
+  </script>
+</body>
+
+</html>
